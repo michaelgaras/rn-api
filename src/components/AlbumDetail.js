@@ -4,9 +4,9 @@ import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 
-const AlbumDetail = ({ album }) => {
+const AlbumDetail = ({ album, user }) => {
 
-    const { title, artist, thumbnail_image, image, url } = album;
+    const { title, description, artist, gravatar, image, url } = album;
     const {
         albumTitle,
         headerContentStyle,
@@ -21,7 +21,7 @@ const AlbumDetail = ({ album }) => {
                 <View style={thumbnailContainerStyle}>
                     <Image
                         style={thumbnailStyle}
-                        source={{ uri: thumbnail_image }}
+                        source={{ uri: gravatar }}
                     />
                 </View>
                 <View style={headerContentStyle}>
@@ -31,14 +31,13 @@ const AlbumDetail = ({ album }) => {
             </CardSection>
 
             <CardSection>
-                <Image
-                    style={imageStyle}
-                    source={{ uri: image }}
-                />
+                <View style={headerContentStyle}>
+                    <Text style={[albumTitle, headerTextStyle]}>{description}</Text>
+                </View>
             </CardSection>
 
             <CardSection>
-                <Button text='Buy Now' customPress={() => Linking.openURL(url)} />
+                <Button text='Read More' customPress={() => Linking.openURL(url)} />
             </CardSection>
         </Card>
     );
