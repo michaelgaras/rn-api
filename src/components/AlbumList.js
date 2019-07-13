@@ -12,6 +12,15 @@ class AlbumList extends Component {
             .then(respone => this.setState({ albums: respone.data }));
     }
 
+    // componentDidMount() {
+    //     axios.get('http://192.168.2.34:3000/articles')
+    //         .then(response => {
+    //             console.log('response:');
+    //             console.log(response);
+    //             this.setState({ albums: response.data });
+    //         }).catch(error => console.log(error));
+    // }
+
     renderAlbums() {
         return this.state.albums.map(
             album => <AlbumDetail album={album} key={album.title} />

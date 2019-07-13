@@ -1,37 +1,74 @@
-import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
-import axios from 'axios';
-import AlbumDetail from './AlbumDetail';
+import React from 'react';
+import { Text, View, Image, Linking } from 'react-native';
+import Card from './Card';
+import CardSection from './CardSection';
+import Button from './Button';
 
-class AlbumList extends Component {
+const AlbumDetail = ({ album }) => {
 
-    state = { albums: [] }
+    const { title, artist, thumbnail_image, image, url } = album;
+    const {
+        albumTitle,
+        headerContentStyle,
+        imageStyle,
+        thumbnailStyle,
+        thumbnailContainerStyle,
+        headerTextStyle } = styles;
 
-    componentDidMount() {
-        axios.get('https://rallycoding.herokuapp.com/api/music_albums')
-            .then(respone => this.setState({ albums: respone.data }));
-    }
+    return (
+        <Card>
+            <CardSection>
+                <View style={thumbnailContainerStyle}>
+                    <Image
+                        style={thumbnailStyle}
+                        source={{ uri: thumbnail_image }}
+                    />
+                </View>
+                <View style={headerContentStyle}>
+                    <Text style={[albumTitle, headerTextStyle]}>{title}</Text>
+                    <Text style={albumTitle}>{artist}</Text>
+                </View>
+            </CardSection>
 
-    renderAlbums() {
-        return this.state.albums.map(
-            album => <AlbumDetail album={album} key={album.title} />
-        );
-    }
+            <CardSection>
+                <Image
+                    style={imageStyle}
+                    source={{ uri: image }}
+                />
+            </CardSection>
 
-    render() {
-        console.log(this.state);
-        return (
-            <ScrollView style={styles.layoutStyle}>
-                {this.renderAlbums()}
-            </ScrollView>
-        );
-    }
-}
-
-const styles = {
-    layoutStyle: {
-        marginBottom: 70
-    }
+            <CardSection>
+                <Button text='Buy Now' customPress={() => Linking.openURL(url)} />
+            </CardSection>
+        </Card>
+    );
 };
 
-export default AlbumList;
+const styles = {
+    albumTitle: {
+        color: 'black'
+    },
+    headerContentStyle: {
+        flexDirection: 'column',
+        justifyContent: 'space-around'
+    },
+    headerTextStyle: {
+        fontSize: 18
+    },
+    thumbnailStyle: {
+        height: 50,
+        width: 50
+    },
+    thumbnailContainerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+        marginRight: 10
+    },
+    imageStyle: {
+        height: 300,
+        flex: 1,
+        width: null
+    }
+};
+export default AlbumDetail;
