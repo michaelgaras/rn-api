@@ -13,10 +13,11 @@ const AlbumDetail = ({ album, user }) => {
         imageStyle,
         thumbnailStyle,
         thumbnailContainerStyle,
-        headerTextStyle } = styles;
+        headerTextStyle,
+        cardStyle } = styles;
 
     return (
-        <Card>
+        <Card style={cardStyle}>
             <CardSection>
                 <View style={thumbnailContainerStyle}>
                     <Image
@@ -35,10 +36,10 @@ const AlbumDetail = ({ album, user }) => {
                     <Text style={[albumTitle, headerTextStyle]}>{description}</Text>
                 </View>
             </CardSection>
-
+{/* 
             <CardSection>
                 <Button text='Read More' customPress={() => Linking.openURL(url)} />
-            </CardSection>
+            </CardSection> */}
         </Card>
     );
 };
@@ -68,6 +69,8 @@ const styles = {
         height: 300,
         flex: 1,
         width: null
+    },
+    cardStyle: {
     }
 };
 export default AlbumDetail;

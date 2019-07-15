@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView,Text } from 'react-native';
 import axios from 'axios';
 import AlbumDetail from './AlbumDetail';
+import Button from './Button';
+
 
 class AlbumList extends Component {
 
@@ -29,6 +31,15 @@ class AlbumList extends Component {
 
     }
 
+    reloadAlbums() {
+        axios.get('https://mlg-blog.herokuapp.com/api/v1/articles')
+        .then(response => {
+            console.log('response:');
+            console.log(response);
+            this.setState({ articles: response.data });
+        }).catch(error => console.log(error));
+    }
+
     renderAlbums() {
         return this.state.articles.map(
             album => <AlbumDetail album={album} key={album.title} />
@@ -39,6 +50,7 @@ class AlbumList extends Component {
         console.log(this.state.articles);
         return (
             <ScrollView style={styles.layoutStyle}>
+                <Button text='Reload Articles' customPress={() => this.reloadAlbums()}></Button>
                 {this.renderAlbums()}
             </ScrollView>
         );
