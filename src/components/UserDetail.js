@@ -4,9 +4,9 @@ import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 
-const AlbumDetail = ({ album }) => {
+const UserDetail = ({ user }) => {
 
-    const { title, description, artist, gravatar, image, url } = album;
+    const { username, email, gravatar, friends } = user;
     const {
         albumTitle,
         headerContentStyle,
@@ -15,6 +15,8 @@ const AlbumDetail = ({ album }) => {
         thumbnailContainerStyle,
         headerTextStyle,
         cardStyle } = styles;
+
+    const filtered_friends = friends.join(', ');
 
     return (
         <Card style={cardStyle}>
@@ -26,14 +28,14 @@ const AlbumDetail = ({ album }) => {
                     />
                 </View>
                 <View style={headerContentStyle}>
-                    <Text style={[albumTitle, headerTextStyle]}>{title}</Text>
-                    <Text style={albumTitle}>{artist}</Text>
+                    <Text style={[albumTitle, headerTextStyle]}>{username}</Text>
+                    <Text style={albumTitle}>{email}</Text>
                 </View>
             </CardSection>
 
             <CardSection>
                 <View style={headerContentStyle}>
-                    <Text style={[albumTitle, headerTextStyle]}>{description}</Text>
+                    <Text style={[albumTitle, headerTextStyle]}>Friends: {filtered_friends}</Text>
                 </View>
             </CardSection>
 {/* 
@@ -73,4 +75,4 @@ const styles = {
     cardStyle: {
     }
 };
-export default AlbumDetail;
+export default UserDetail;
