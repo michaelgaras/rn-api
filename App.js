@@ -100,7 +100,6 @@ const Navigator = createMaterialTopTabNavigator(
     {
       order: ['SignUp', 'SignIn', 'Users', 'Articles'],
       tabBarPosition: 'bottom',
-      animationEnabled: false,
       tabBarOptions: {
         style: {
           backgroundColor: '#f2f2f2',
