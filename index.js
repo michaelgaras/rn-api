@@ -1,19 +1,26 @@
-import React, { Component } from 'react';
-import { View, AppRegistry } from 'react-native';
-import Header from './src/components/Header';
-import AlbumList from './src/components/AlbumList';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+// import React, { Component } from 'react';
+// import { View, AppRegistry } from 'react-native';
+// import Header from './src/components/Header';
+// import AlbumList from './src/components/AlbumList';
+// import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
-class App extends Component {
-    render() {
-    return (
-        <View>
-            <Header headerText={'Articles'} />
-            <AlbumList />
-        </View>
-    );
-}
-}
+import { AppRegistry } from 'react-native';
+import App from './App';
+import { name as appName } from './app.json';
+
+AppRegistry.registerComponent(appName, () => App);
+
+
+// class App extends Component {
+//     render() {
+//     return (
+//         <View>
+//             <Header headerText={'Articles'} />
+//             <AlbumList />
+//         </View>
+//     );
+// }
+// }
 
 // class ArticlesScreen extends Component {
 //     render() {
@@ -34,4 +41,3 @@ class App extends Component {
 
 // export default HomeScreen;
 
-AppRegistry.registerComponent('albums', () => App);
